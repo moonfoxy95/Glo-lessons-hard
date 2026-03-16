@@ -1,11 +1,47 @@
-let num = 266219;
+'use strict';
 
-let res = 1;
-for (let i = 0; i < num.toString().length; i += 1) {
-  res = num.toString()[i] * res;
+// Задание 1
+let lang = 'ru';
+
+let weekdaysRu = 'понедельник, вторник, среда, четверг, пятница, суббота, воскресенье';
+let weekdaysEn = 'monday, tuesday, wensday, thursday, friday, saturday, sunday';
+let weekdaysErr = 'Язык не ru или en'
+
+if (lang === 'ru') {
+  console.log(weekdaysRu);
+} else if (lang === 'en') {
+  console.log(weekdaysEn);
+} else {
+  console.log(weekdaysErr);
 }
 
-console.log(res);
-let cubeRes = res ** 3;
-console.log(cubeRes);
-console.log(cubeRes.toString().substring(0, 2));
+switch (lang) {
+  case 'ru':
+    console.log(weekdaysRu);
+    break;
+  case 'en':
+    console.log(weekdaysEn);
+    break;
+  default:
+    console.log(weekdaysErr);
+}
+
+let weeksArray = {
+  'ru': [weekdaysRu],
+  'en': [weekdaysEn]
+}
+
+if (weeksArray[lang]) {
+  console.log(weeksArray[lang].join(', '));
+} else {
+  console.log(weekdaysErr);
+}
+
+// Задание 2
+let namePerson = 'Артем';
+
+namePerson === 'Артем'
+  ? console.log('директор')
+  : namePerson === 'Александр'
+    ? console.log('преподаватель')
+    : console.log('студент')
