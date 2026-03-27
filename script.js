@@ -1,48 +1,40 @@
-'use strict';
+'use strict'
 
-// Усложненное 1 (строка 15)
+let weekDays = [
+  'понедельник',
+  'вторник',
+  'среда',
+  'четверг',
+  'пятница',
+  'суббота',
+  'воскресенье',
+]
 
-let screenPrice;
+let createDiv = document.createElement('div');
 
-let isNumber = function (num) {
-  return !isNaN(parseFloat(num)) && isFinite(num);
-}
+let body = document.querySelector('body');
+body.appendChild(createDiv);
 
-do {
-  screenPrice = '   500   ' || prompt('Сколько будет стоить данная работа?')
-} while (!isNumber(screenPrice));
+let weekDaysDiv = document.querySelector('div');
+weekDaysDiv.classList.add('weekdays');
 
-screenPrice = +screenPrice;
+let today = new Date();
+//let today = new Date('March 29, 2026 14:15:30');
+let todayDay = today.getDay();
 
-console.log(screenPrice, typeof (screenPrice));
+weekDays.forEach(function (item, index) {
+  let weekDaysP = document.createElement('p');
+  weekDaysP.textContent = item;
 
-// Усложненное 2
-
-let myArr = ['102', '20', '30', '40', '50', '60', '70'];
-
-for (let i = 0; i < myArr.length; i++) {
-  if (myArr[i][0] === '2' || myArr[i][0] === '4') {
-    console.log(myArr[i]);
+  if (item === 'суббота' || item === 'воскресенье') {
+    weekDaysP.style.fontStyle = 'italic';
   }
-}
 
-
-let simpleDigit = function () {
-  for (let i = 2; i <= 100; i++) {
-
-    let isSimple = true;
-
-    for (let j = 2; j < Math.sqrt(i); j++) {
-      if (i % j === 0) {
-        isSimple = false;
-        break;
-      }
-    }
-
-    if (isSimple) {
-      console.log(i);
-    }
+  if ((index + 1 === todayDay)
+    || (index === 6 && todayDay === 0)) {
+    weekDaysP.style.fontWeight = 'bold';
+    weekDaysP.textContent += ' (сегодня)';
   }
-}
 
-simpleDigit();
+  weekDaysDiv.appendChild(weekDaysP);
+});
